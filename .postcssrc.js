@@ -1,12 +1,9 @@
-const { getIterator } = require('core-js')
-
 module.exports = {
   plugins: {
-    autoprefixer: {
-      browsers: ['Android >= 4.0', 'iOS >= 8']
-    },
     'postcss-pxtorem': {
-      rootValue: (module) => (/vant/gi.test(module.file) ? 37.5 : 75),
+      // rootValue: (module) => (/vant/gi.test(module.file) ? 37.5 : 75),
+
+      rootValue: 37.5,
       propList: ['*']
     }
   }
