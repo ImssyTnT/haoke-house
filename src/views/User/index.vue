@@ -73,14 +73,8 @@
 </template>
 
 <script>
-import { user } from '@/api/user.js'
 export default {
-  async created() {
-    const token = JSON.parse(localStorage.getItem('token'))
-    console.log(token)
-    const res = await user(token)
-    console.log(res)
-  },
+  async created() {},
   methods: {
     goLoginFn() {
       this.$router.push({
