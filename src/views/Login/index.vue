@@ -50,24 +50,26 @@ export default {
     }
   },
   methods: {
+    // 返回上一页
     backProPage() {
       this.$router.back()
     },
+    // 登录
     async loginFn() {
+      this.$toast.loading({
+        message: '正在登录...',
+        forbidClick: true
+      })
       try {
         const res = await login(this.username, this.password)
-        console.log(res)
         const { data } = res
-        if (data.status !== 200) {
-          return this.$toast.fail(data.description)
-        }
-        this.$toast.success(data.description)
-        localStorage.setItem('token', JSON.stringify(data.body.token) || {})
+        this.$store.commit('setUser', data.body.token)
         this.$router.push({
           path: '/layout/user'
         })
-      } catch (e) {
-        console.log(e)
+        this.$toast.success(data.description)
+      } catch (err) {
+        this.$toast.fail('账号登录失败!')
       }
     }
   }
