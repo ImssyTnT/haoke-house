@@ -63,12 +63,13 @@ export default {
       try {
         const res = await login(this.username, this.password)
         const { data } = res
-        this.$store.commit('setUser', data.body.token)
+        this.$store.commit('setUser', data.body)
         this.$router.push({
           path: '/layout/user'
         })
         this.$toast.success(data.description)
       } catch (err) {
+        console.log(err)
         this.$toast.fail('账号登录失败!')
       }
     }
