@@ -1,9 +1,8 @@
 import request from '@/utils/request.js'
-export const user = (token) => {
-  console.log(token)
+
+export const user = () => {
   return request({
     method: 'GET',
-    url: '/user',
-    headers: { authorization: token }
+    url: '/user'
   })
 }
