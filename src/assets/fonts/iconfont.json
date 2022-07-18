@@ -6,6 +6,20 @@
   "description": "好客租房所需图标",
   "glyphs": [
     {
+      "icon_id": "3205015",
+      "name": "五角星",
+      "font_class": "wujiaoxing-",
+      "unicode": "e647",
+      "unicode_decimal": 58951
+    },
+    {
+      "icon_id": "4175511",
+      "name": "下箭头",
+      "font_class": "xiajiantou",
+      "unicode": "eb6d",
+      "unicode_decimal": 60269
+    },
+    {
       "icon_id": "1367319",
       "name": "煤气天然气",
       "font_class": "meiqitianranqi",
