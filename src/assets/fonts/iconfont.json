@@ -6,6 +6,13 @@
   "description": "好客租房所需图标",
   "glyphs": [
     {
+      "icon_id": "1367319",
+      "name": "煤气天然气",
+      "font_class": "meiqitianranqi",
+      "unicode": "e60e",
+      "unicode_decimal": 58894
+    },
+    {
       "icon_id": "59492",
       "name": "wifi",
       "font_class": "wifi",

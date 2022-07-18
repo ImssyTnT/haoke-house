@@ -25,7 +25,8 @@ const routes = [
   {
     path: '/favorate',
     component: () => import('@/views/User/component/FavorateList.vue')
-  }
+  },
+  { path: '/detail', component: () => import('@/components/Detail.vue') }
 ]
 
 const router = new VueRouter({

@@ -40,7 +40,7 @@
 </template>
 
 <script>
-import { login } from '@/api/login.js'
+import { login } from '@/api'
 export default {
   name: 'login',
   data() {

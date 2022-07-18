@@ -52,7 +52,7 @@
     <!-- 宫格区域 Start -->
     <div class="grid">
       <van-grid :column-num="3" :border="false" icon-size="20px" clickable>
-        <van-grid-item text="我的收藏" to="/favorate">
+        <van-grid-item text="我的收藏" @click="favorateFn">
           <template #icon>
             <span class="house house-shoucang"></span>
           </template>
@@ -95,7 +95,7 @@
 </template>
 
 <script>
-import { user } from '@/api/user.js'
+import { getUser } from '@/api'
 import bgImg from '@/assets/WechatIMG3486.png'
 export default {
   data() {
@@ -135,7 +135,7 @@ export default {
     // 获取用户信息
     async getUserInfo() {
       try {
-        const res = await user()
+        const res = await getUser()
         // if (res.data.status === 200) {
         //   this.isShow = false
         // } else {
@@ -147,6 +147,11 @@ export default {
       } catch (err) {
         this.$toast.fail('请重新登录')
       }
+    },
+    favorateFn() {
+      this.$router.push({
+        path: '/favorate'
+      })
     }
   }
 }

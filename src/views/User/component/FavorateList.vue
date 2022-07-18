@@ -1,39 +1,56 @@
 <template>
   <div>
     <!-- 头部导航 Start -->
-    <van-nav-bar
-      title="收藏列表"
-      left-arrow
-      @click-left="backProPage"
-      class="title"
-    />
+    <NavBar title="收藏列表"></NavBar>
     <!-- 头部导航 End -->
-    <MyGoodsList></MyGoodsList>
+    <MyGoodsList
+      v-for="(item, index) in goodsList"
+      :key="index"
+      :item="item"
+      @go="goDetail"
+    ></MyGoodsList>
   </div>
 </template>
 
 <script>
 import MyGoodsList from '@/components/MyGoodsList.vue'
+import NavBar from '@/components/NavBar.vue'
+import { getFavorate } from '@/api'
 export default {
+  name: 'favorate',
+  created() {
+    this.title = this.$route.query.title
+    this.getFavorate()
+  },
+  data() {
+    return {
+      goodsList: []
+    }
+  },
   components: {
-    MyGoodsList
+    MyGoodsList,
+    NavBar
   },
   methods: {
-    backProPage() {
-      this.$router.back()
+    // 获取用户收藏列表
+    async getFavorate() {
+      try {
+        const { data } = await getFavorate()
+        this.goodsList = data.body
+      } catch (error) {
+        this.$toast.fail('数据获取失败')
+      }
+    },
+    goDetail(id) {
+      this.$router.push({
+        path: '/detail',
+        query: {
+          id
+        }
+      })
     }
   }
 }
 </script>
 
-<style lang="less" scoped>
-.title {
-  background-color: #21b97a;
-  :deep(.van-nav-bar__title) {
-    color: #fff;
-  }
-  :deep(.van-icon) {
-    color: #fff;
-  }
-}
-</style>
+<style lang="less" scoped></style>
