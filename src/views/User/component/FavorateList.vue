@@ -34,13 +34,21 @@ export default {
   methods: {
     // 获取用户收藏列表
     async getFavorate() {
+      this.$toast.loading({
+        message: '加载中...',
+        forbidClick: true,
+        duration: 0
+      })
       try {
         const { data } = await getFavorate()
         this.goodsList = data.body
       } catch (error) {
         this.$toast.fail('数据获取失败')
+      } finally {
+        this.$toast.clear()
       }
     },
+    // 跳转房屋详情
     goDetail(id) {
       this.$router.push({
         path: '/detail',

@@ -177,17 +177,22 @@ export default {
     MyGoodsList
   },
   methods: {
+    // 获取房屋详情
     async getHouseInfo(id) {
+      this.$toast.loading({
+        message: '加载中...',
+        forbidClick: true,
+        duration: 0
+      })
       try {
         const { data } = await getHouseInfo(id)
         this.houseInfo = data.body
         console.log(data)
       } catch (error) {
         this.$toast.fail('获取信息失败')
+      } finally {
+        this.$toast.clear()
       }
-    },
-    addFn(item) {
-      console.log(item)
     },
     iconfont(val) {
       switch (val) {

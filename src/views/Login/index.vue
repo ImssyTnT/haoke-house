@@ -58,7 +58,8 @@ export default {
     async loginFn() {
       this.$toast.loading({
         message: '正在登录...',
-        forbidClick: true
+        forbidClick: true,
+        duration: 0
       })
       try {
         const res = await login(this.username, this.password)
@@ -71,6 +72,8 @@ export default {
       } catch (err) {
         console.log(err)
         this.$toast.fail('账号登录失败!')
+      } finally {
+        this.$toast.clear()
       }
     }
   }

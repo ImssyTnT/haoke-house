@@ -15,6 +15,7 @@ export default {
     // 返回上一页
     backProPage() {
       this.$router.back()
+      this.$toast.clear()
     }
   },
   props: {

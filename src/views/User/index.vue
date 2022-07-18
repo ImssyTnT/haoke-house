@@ -57,7 +57,7 @@
             <span class="house house-shoucang"></span>
           </template>
         </van-grid-item>
-        <van-grid-item text="我的出租">
+        <van-grid-item text="我的出租" @click="rentFn">
           <template #icon>
             <span class="house house-shouye-weixuanzhong"></span>
           </template>
@@ -134,6 +134,11 @@ export default {
     },
     // 获取用户信息
     async getUserInfo() {
+      this.$toast.loading({
+        message: '加载中...',
+        forbidClick: true,
+        duration: 0
+      })
       try {
         const res = await getUser()
         // if (res.data.status === 200) {
@@ -146,11 +151,20 @@ export default {
         this.avatar = `http://liufusong.top:8080${this.userInfo.avatar}`
       } catch (err) {
         this.$toast.fail('请重新登录')
+      } finally {
+        this.$toast.clear()
       }
     },
+    // 跳转我的收藏
     favorateFn() {
       this.$router.push({
         path: '/favorate'
+      })
+    },
+    // 跳转我的出租
+    rentFn() {
+      this.$router.push({
+        path: '/rent'
       })
     }
   }
