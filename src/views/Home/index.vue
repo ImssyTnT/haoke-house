@@ -38,10 +38,10 @@
     <!-- 导航区域 Start -->
     <div class="home-nav">
       <van-grid :border="false" icon-size="60px">
-        <van-grid-item :icon="img1" text="文字" />
-        <van-grid-item :icon="img2" text="文字" />
-        <van-grid-item :icon="img3" text="文字" />
-        <van-grid-item :icon="img4" text="文字" />
+        <van-grid-item :icon="img1" text="整租" />
+        <van-grid-item :icon="img2" text="合租" />
+        <van-grid-item :icon="img3" text="地图找房" />
+        <van-grid-item :icon="img4" text="去出租" />
       </van-grid>
     </div>
     <!-- 导航区域 End -->
