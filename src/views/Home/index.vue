@@ -9,7 +9,7 @@
         background="#fff"
       >
         <template #left>
-          <span class="name">北京</span>
+          <span class="name" @click="goCity(City)">{{ City }}</span>
           <span class="house house-xiajiantou"></span>
         </template>
       </van-search>
@@ -52,12 +52,22 @@
         :column-num="2"
         :border="false"
         :gutter="10"
+        icon-size="50"
         direction="horizontal"
       >
-        <van-grid-item icon="photo-o" text="文字" />
-        <van-grid-item icon="photo-o" text="文字" />
-        <van-grid-item icon="photo-o" text="文字" />
-        <van-grid-item icon="photo-o" text="文字" />
+        <van-grid-item
+          v-for="item in regionInfo"
+          :key="item.id"
+          :icon="`http://liufusong.top:8080${item.imgSrc}`"
+          text="文字"
+        >
+          <template #text>
+            <div class="text">
+              <span>{{ item.title }}</span>
+              <span>{{ item.desc }}</span>
+            </div>
+          </template>
+        </van-grid-item>
       </van-grid>
     </div>
     <!-- 租房小组 End -->
@@ -69,7 +79,7 @@ import img1 from '@/assets/images/下载 (1).png'
 import img2 from '@/assets/images/下载.png'
 import img3 from '@/assets/images/下载 (2).png'
 import img4 from '@/assets/images/下载 (3).png'
-import { getHomeSwiper } from '@/api'
+import { getHomeSwiper, getHomeCity, getGroup } from '@/api'
 export default {
   name: 'home',
   data() {
@@ -79,11 +89,17 @@ export default {
       img2,
       img3,
       img4,
-      swiperImg: []
+      swiperImg: [],
+      City: '',
+      region: '',
+      regionInfo: []
     }
   },
   created() {
     this.getHomeSwiper()
+    this.getHomeCity()
+    this.getGroup()
+    this.City = this.$route.query.title ? this.$route.query.title : '北京'
   },
   methods: {
     // 获取轮播图
@@ -92,6 +108,23 @@ export default {
         const { data } = await getHomeSwiper()
         this.swiperImg = data.body
       } catch (error) {}
+    },
+    // 获取默认城市信息
+    async getHomeCity() {
+      const { data } = await getHomeCity('北京')
+      this.region = data.body.value
+    },
+    // 获取租房小组信息
+    async getGroup() {
+      const { data } = await getGroup(this.region)
+      this.regionInfo = data.body
+    },
+    // 前往城市列表页面
+    goCity(City) {
+      this.$router.push({
+        path: '/city',
+        query: { City }
+      })
     }
   }
 }
@@ -165,6 +198,14 @@ export default {
     .van-cell__title {
       font-size: 15px;
       font-weight: 700;
+    }
+  }
+  :deep(.van-grid-item__content--horizontal) {
+    justify-content: space-evenly;
+    .text {
+      display: flex;
+      flex-direction: column;
+      font-size: 14px;
     }
   }
 }

@@ -28,7 +28,8 @@ const routes = [
     component: () => import('@/views/User/component/FavorateList.vue')
   },
   { path: '/detail', component: () => import('@/components/Detail.vue') },
-  { path: '/rent', component: () => import('@/views/User/component/Rent.vue') }
+  { path: '/rent', component: () => import('@/views/User/component/Rent.vue') },
+  { path: '/city', component: () => import('@/views/CityList') }
 ]
 
 const router = new VueRouter({
