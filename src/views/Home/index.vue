@@ -202,6 +202,8 @@ export default {
   }
   :deep(.van-grid-item__content--horizontal) {
     justify-content: space-evenly;
+    flex: 1;
+    height: 60px;
     .text {
       display: flex;
       flex-direction: column;
